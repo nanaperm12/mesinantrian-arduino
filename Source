@@ -1,0 +1,24 @@
+ }
+ 
+  for (byte i = 0; i < sizeof(pinTombolPanggil); i++)
+  {
+    if (!digitalRead(pinTombolPanggil[i]))
+    {
+      if (!statusTombolPanggil[i])
+      {
+        delay(100);
+        if (!digitalRead(pinTombolPanggil[i]))
+        {
+          dataAntrian.dataTombolTekan[i] = true;
+          statusTombolPanggil[i] = true;
+ 
+          Serial.print("TombolPanggil:");
+          Serial.println(i);
+        }
+      }
+    }
+    else
+    {
+      statusTombolPanggil[i] = false;
+    }
+  }
